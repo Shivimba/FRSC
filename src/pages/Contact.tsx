@@ -33,10 +33,8 @@ const formSchema = z.object({
   message: z.string().min(10, "Please include a message of at least 10 characters"),
 });
 
-// Contact form backend (Formspree). See GO_LIVE_RUNBOOK.md Step 6:
-// create the form at formspree.io, then replace REPLACE_WITH_YOUR_FORM_ID
-// below with the real ID (it looks like: https://formspree.io/f/abcd1234).
-const FORM_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID";
+// Contact form backend (Formspree, form "FSRC Contact" — delivers to the owner's inbox).
+const FORM_ENDPOINT = "https://formspree.io/f/mjgnnnnj";
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
