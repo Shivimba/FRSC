@@ -1,0 +1,20 @@
+packages:
+  "framer-motion": "For elegant page transitions and scroll-triggered animations fitting the institutional aesthetic."
+  "react-hook-form": "For the contact form state management."
+  "@hookform/resolvers": "For contact form validation."
+  "zod": "For contact form validation schema."
+  "clsx": "Utility for constructing className strings conditionally."
+  "tailwind-merge": "Utility to merge tailwind classes without style conflicts."
+
+images:
+  - path: "artifacts/fsrc-website/public/images/home-hero.png"
+    description: "Abstract, elegant deep navy blue background with very subtle, thin gold geometric or network lines. Moody, institutional, professional, high-end think tank vibe."
+    aspect_ratio: "16:9"
+  - path: "artifacts/fsrc-website/public/images/page-hero.png"
+    description: "Abstract architectural interior, blurred, soft lighting, deep blue and charcoal tones with muted gold light reflections. Very professional and calm."
+    aspect_ratio: "16:9"
+
+notes:
+  - This is a fully static frontend with no backend API dependencies.
+  - Forms simulate submission locally.
+  - Wouter is used for routing.
