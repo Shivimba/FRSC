@@ -82,11 +82,13 @@ export function Navbar() {
           <div className="flex justify-between items-center h-20 lg:h-24">
 
             {/*
-              Logo — the COMPACT HORIZONTAL lockup (fsrc-logo-h-*), 4.15:1, not the
-              stacked 2.03:1 master. The stacked lockup forces a ~128px bar to keep
-              the wordmark legible; the horizontal one fits an 80/96px bar.
-              Header height, this image height, App.tsx's main padding-top and the
-              mobile drawer offsets below are INTERLOCKED — change one, change all.
+              Logo — the STACKED lockup (fsrc-logo-stack-*): bulb + gold rule + the
+              name in its original four-line column, at the master's own proportion
+              (column height 0.809 x the bulb's, never taller than the bulb — the
+              canvas is padded to 1200x604 so the bulb renders at exactly 51.9px at
+              h-14, unchanged). Header height, this image height, App.tsx's
+              main padding-top and the mobile drawer offsets below are INTERLOCKED —
+              change one, change all.
             */}
             <div className="flex items-center shrink-0 gap-4 xl:gap-5">
               <Link
@@ -95,18 +97,20 @@ export function Navbar() {
                 aria-label={`${SITE_META.legalName} — return to homepage`}
               >
                 <img
-                  src={`${import.meta.env.BASE_URL}images/fsrc-logo-h-light-520.png`}
+                  src={`${import.meta.env.BASE_URL}images/fsrc-logo-stack-light-452.png`}
                   alt={SITE_META.legalName}
-                  width={520}
-                  height={125}
+                  width={452}
+                  height={228}
                   className="h-12 lg:h-14 w-auto"
                 />
               </Link>
-              {/* Tagline — hidden at lg, where the 7-item nav needs the room */}
-              <span className="hidden md:flex lg:hidden xl:flex items-center gap-4">
-                <span className="w-px h-8 bg-white/20" aria-hidden="true" />
-                <span className="text-accent text-[11px] font-semibold uppercase tracking-[0.18em] leading-tight">
-                  {SITE_META.tagline}
+              {/* Tagline — set as a vertical column, one word per line */}
+              <span className="hidden md:flex items-center gap-4">
+                <span className="w-px h-10 lg:h-12 bg-white/20" aria-hidden="true" />
+                <span className="flex flex-col text-accent text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.16em] leading-[1.5]">
+                  {SITE_META.taglineWords.map((word) => (
+                    <span key={word}>{word}</span>
+                  ))}
                 </span>
               </span>
             </div>

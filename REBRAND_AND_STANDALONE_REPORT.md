@@ -396,3 +396,114 @@ on your disk unasked. Say the word and I'll sweep it into `_old-logo-assets\`.
 
 **To deploy**: double-click `deploy_fsrc.bat`. No hard refresh needed this time — the logo is a
 new filename, and the favicon and OG card did not change.
+
+---
+
+## Header revision addendum (August 4, 2026) — four-line column restored, tagline set vertically
+
+Your note: bring back the previous build's word column, keep the bulb at the size it reached in
+the compact build, scale the column to match the bulb, and set "Insight. Intelligence. Impact."
+vertically. All four are done.
+
+**What the header now is.** The bulb is unchanged from the compact build — same artwork, same
+rendered size (52.5px on desktop, 45px on mobile). Beside it, the name is back in its **original
+four-line column**, "Five / Senses / Research / Consultants", cut verbatim from
+`new_FSRC_Logo_03.png` — same glyphs, same leading, same left alignment, nothing re-set. The
+only change to that column is scale: it is enlarged **1.236×** relative to the master so its
+total height is now **exactly the bulb's height** (560 units to 560 units). In your supplied
+artwork the column was 0.81× the bulb; now the two read as one square-shouldered block.
+
+| Change | Detail |
+|---|---|
+| New asset | `public/images/fsrc-logo-stack-light.png` (1370×604) + `-452.png`, aspect 2.27:1 |
+| Bulb | **unchanged** — 52.5px desktop / 45px mobile, as in the compact build |
+| Word column | four lines restored, scaled ×1.236 so column height = bulb height |
+| Tagline | now a **vertical column**, one word per line, gold caps, behind the hairline divider |
+| Tagline source | new `SITE_META.taglineWords` array in `siteConfig.ts`; `SITE_META.tagline` keeps the single-line string for prose |
+| Header height | **unchanged** at `h-20 lg:h-24` (80 / 96px) — the new lockup fits the short bar |
+| Breakpoints | tagline now shows at 1024px too (`hidden md:flex`); the vertical column is narrow enough that the `lg` suppression is no longer needed |
+| Footer | unchanged — still the master lockup at 300px |
+| Two-line variant | `fsrc-logo-h-light*.png` retained but no longer referenced |
+
+**Verification** (headless Chromium, production build of `dist/`):
+
+| Check | Status | Observed |
+|---|---|---|
+| `npm run build` | ✅ | 2,113 modules, 0 errors, 7.3s |
+| Desktop 1440px | ✅ | logo + three-line gold tagline + all 6 nav links on one 96px row |
+| Desktop 1024px | ✅ | tagline column now fits as well, with clearance before "About" |
+| Mobile 390px | ✅ | lockup at 48px beside the hamburger; bar still 80px |
+| Mobile menu open | ✅ | drawer opens flush under the 80px bar |
+| Tagline contrast | ✅ | gold on green = 4.64:1, passes WCAG AA |
+| Header height | ✅ | unchanged from the previous addendum — 80 / 96px |
+| Page errors | ✅ | none |
+
+**One honest caveat, and it is a real trade.** Four lines of text inside the bulb's height means
+each line gets about a quarter of 52px. The cap height of "Consultants" lands near **9px on
+desktop and 7–8px on mobile** — present and readable up close, but below body copy, and noticeably
+smaller than the two-line lockup it replaced (~14px). That is the arithmetic of the instruction,
+not a styling choice: four lines in the bulb's height cannot be larger than this. Three ways out
+if you want the name bigger, any of which I can do in a few minutes — (1) raise the bar to
+`h-24 lg:h-28` (96/112px) and scale the whole lockup up with it, (2) keep the bar and let the
+word column exceed the bulb's height rather than match it, or (3) go back to the two-line
+lockup, which fits the short bar at full legibility. Look at it live first; on a real screen it
+may sit better than it does in a screenshot.
+
+**To deploy**: double-click `deploy_fsrc.bat`. No hard refresh needed — new filename, and the
+favicon and OG card are unchanged.
+
+---
+
+## Header revision addendum #2 (August 4, 2026) — master proportions restored
+
+Your note: reduce the letters to the bulb's size, the block of letters must not be taller than
+the bulb, keep the original size proportion, don't touch the bulb. Done — and it undoes the one
+liberty the previous revision took.
+
+The previous version enlarged the word column by 1.236× so it matched the bulb's height exactly.
+That is now reverted: the column is back at **the master's own scale**, 453 units against the
+bulb's 560, a ratio of **0.809** — identical to `new_FSRC_Logo_03.png`. Every element in the
+header lockup is now cut from your artwork at 1:1 with the master's own spacing (28 units bulb→
+rule, 50 units rule→text). Nothing is scaled, re-set or redrawn.
+
+**The bulb is untouched, to the pixel.** Keeping it that way took one deliberate trick worth
+recording: shrinking the text changes the artwork's aspect ratio, which would have changed how
+tall the bulb renders inside a fixed-height `<img>`. So the canvas is padded to **1200×604**
+rather than the master's 1200×592, holding the bulb-to-canvas ratio at 560/604. The bulb still
+renders at **51.92px** at `h-14` — the same number as the previous build, not a rounding of it.
+If anyone later "tidies" that padding back to 592, the bulb grows 2%.
+
+| Change | Detail |
+|---|---|
+| Word column | 1.236× upscale **removed** — back to the master's 0.809× bulb height |
+| Block height | 453 units vs the bulb's 560 — shorter than the bulb, as instructed |
+| Spacing | master's own 28 / 50 unit gaps restored |
+| Bulb | **unchanged** — 51.92px at `h-14`, verified identical |
+| Asset | `fsrc-logo-stack-light.png` now 1200×604 (was 1370×604); `-452.png` now 452×228 |
+| Header height | unchanged, `h-20 lg:h-24` (80 / 96px) |
+| Tagline | unchanged — vertical column, one word per line |
+
+**Verification** (headless Chromium, production build of `dist/`):
+
+| Check | Status | Observed |
+|---|---|---|
+| `npm run build` | ✅ | 2,113 modules, 0 errors, 6.4s |
+| Column vs bulb | ✅ | text block visibly shorter than the bulb at every viewport |
+| Bulb size | ✅ | 51.92px at `h-14` — arithmetically identical to the previous build |
+| Proportion | ✅ | 0.809 measured against 0.809 in the master file |
+| Desktop 1440px | ✅ | logo + three-line gold tagline + all 6 nav links on one 96px row |
+| Desktop 1024px | ✅ | fits with clearance |
+| Mobile 390px | ✅ | bar still 80px |
+| Page errors | ✅ | none |
+
+**The caveat from the last addendum now applies more strongly, not less.** Smaller letters mean
+smaller letters: "Consultants" is now around **6–7px cap height on desktop and 5–6px on mobile**.
+On a high-DPI screen it will read as a texture — you will see that there is a name there and
+recognise its shape, but a first-time visitor is unlikely to read it at a glance. This is the
+honest consequence of holding three constraints at once (four lines, master proportion, 96px
+bar); it is not something I can style around. Judge it live rather than on a screenshot, and if
+it reads too small, the lever with no downside is bar height — going to `h-24 lg:h-28`
+(96/112px) scales the whole lockup up ~17% while keeping every proportion you have specified.
+
+**To deploy**: double-click `deploy_fsrc.bat`. Hard-refresh (**Ctrl+F5**) this time — the asset
+filenames are unchanged, so your browser may serve the previous version from cache.

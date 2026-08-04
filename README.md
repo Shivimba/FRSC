@@ -173,12 +173,17 @@ Font assignments are in `src/index.css`:
 
 The official FSRC logo is integrated site-wide:
 
-- `public/images/fsrc-logo-h-light.png` / `-520.png` — **the header logo**: the *compact
-  horizontal* lockup. Bulb + gold rule + the name set on **two** lines ("Five Senses" /
-  "Research Consultants"), aspect **4.15:1**. Cream/gold on transparent, for **dark green**
-  backgrounds. Used in the navbar.
-- `public/images/fsrc-logo-light.png` / `-640.png` — **the stacked lockup**, same elements with
-  the name on four lines, aspect **2.03:1**. Used in the footer, where a tall block fits.
+- `public/images/fsrc-logo-stack-light.png` / `-452.png` — **the header logo**. Bulb + gold rule
+  + the name in its original **four-line column** ("Five / Senses / Research / Consultants"),
+  every element at the **master's own scale and spacing** — the word column is 0.809× the bulb's
+  height, exactly as supplied, and never taller than the bulb. The canvas is padded to
+  **1200×604** (rather than the master's 592) purely so the bulb renders at exactly 51.9px at
+  `h-14`; do not "fix" that padding or the bulb changes size.
+- `public/images/fsrc-logo-light.png` / `-640.png` — **the master lockup** as supplied, 1200×592.
+  Used in the footer, where a tall block fits.
+- `public/images/fsrc-logo-h-light.png` / `-520.png` — a *compact horizontal* two-line variant
+  (4.15:1). **Not currently used**; kept because it is the most space-efficient lockup if the
+  header ever has to get shorter still.
 - `public/favicon.svg` + `public/apple-touch-icon.png` — icons generated from the bulb
 - `public/opengraph.jpg` — 1200×630 social sharing card built from the logo
 
@@ -193,12 +198,15 @@ wordmark as legible as body copy. Change either and you must also change:
 2. `top-20` on the mobile drawer in `Navbar.tsx`
 3. `max-h-[calc(100vh-5rem)]` on the same drawer
 
-The compact horizontal lockup exists *because* of this interlock: the stacked 2.03:1 artwork
-geometrically forces a ~128px bar to keep four lines of text legible. Do not put the stacked
-lockup back in the header.
+Note the trade this sizing makes: at a 48/56px logo height the four-line word column has a cap
+height of roughly 6–7px — well under body copy. That is deliberate, and it is what keeps the
+four-line column, the master's proportions, *and* an 80/96px bar all at once. Raising legibility
+means raising the bar height (or switching the header to `fsrc-logo-h-light-520.png`, the
+two-line variant).
 
-The tagline beside the logo (`SITE_META.tagline`) is deliberately hidden at the `lg` breakpoint
-only — `hidden md:flex lg:hidden xl:flex` — because at 1024px the seven-item nav needs the room.
+The tagline beside the logo is set as a **vertical column**, one line per word, from
+`SITE_META.taglineWords` in `siteConfig.ts` (`SITE_META.tagline` keeps the single-line form for
+prose use). It is hidden below `md`, where the hamburger needs the room.
 
 Master artwork: `C:\dev\fsrc-website\newFive_Senses_Logo\new_FSRC_Logo_03.png` — every asset
 above (including the favicon and OG card) is cut from that one file.
