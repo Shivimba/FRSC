@@ -200,3 +200,88 @@ I update the remote URL in Step 2 and the bat's comments.
 
 Still open for you: run runbook Steps 1–5 (~40 min, mostly DNS wait), then paste me the
 Formspree endpoint and I'll wire it for the final deploy.
+
+## 🎉 LAUNCH addendum (August 3, 2026, evening) — fsrc.pro is LIVE
+
+The deploy was executed live in your browser (Claude driving Cloudflare/Squarespace via
+Chrome; you did the 2FA and GitHub authorization steps, plus the git push from PowerShell).
+Verified state at close:
+
+| Check | Status | Observed |
+|---|---|---|
+| https://fsrc.pro | ✅ LIVE | Green FSRC homepage over HTTPS at the real domain, emblem + tagline rendering |
+| Pages deployments | ✅ | `7dfba14` (initial) and `c0721d5` (Formspree wiring) both built and served; production = c0721d5 |
+| GitHub flow | ✅ | `Shivimba/FRSC` main → auto-build on push confirmed working end to end (bat → push → build → live) |
+| Nameservers | ✅ | Squarespace switched to `danica`/`kurt.ns.cloudflare.com`; zone Active same evening |
+| Custom domains | ✅ | fsrc.pro + www.fsrc.pro attached to project `fsrc-website` |
+| Email Routing | ✅ Enabled | 3 rules Active: `inquiries@`/`info@`/`advisory@fsrc.pro` → dmmatsinhe@gmail.com; MX/DKIM/SPF records Enabled; old Squarespace SPF replaced cleanly |
+| Contact form | ✅ deployed | POSTs to Formspree `f/mjgnnnnj` (recipient: your Gmail); failure fallback message points to inquiries@fsrc.pro |
+| DNSSEC | ✅ | Was off at Squarespace — no handover conflict |
+
+Your smoke tests (2 minutes): (1) send any email to `inquiries@fsrc.pro` → arrives in your
+Gmail (check spam the first time); (2) submit the contact form on https://fsrc.pro/contact →
+"Inquiry Received" on screen + the message in your Gmail via Formspree (the very first
+submission may require clicking a one-time Formspree confirmation email).
+
+Still open (unchanged from "Not done"): publication links/PDFs are placeholders, Privacy/Terms
+pages unwritten, hero images uncompressed, footer social handles unverified. Running cost of
+everything shipped tonight: **$0/month** (domain renewal CA$48/yr at Squarespace, unchanged).
+
+Ops recap: ship updates = double-click `deploy_fsrc.bat` · rollback = Pages → Deployments →
+previous → Rollback · traffic = Cloudflare dash → fsrc.pro → Analytics · form log =
+formspree.io dashboard.
+
+## Identity v2 addendum (August 4, 2026) — new Five Senses logo applied
+
+You supplied a **new** logo (lightbulb + brain, five sense icons) in
+`C:\dev\fsrc-website\newFive_Senses_Logo\`, replacing the five-petal rosette used at launch.
+The whole identity layer was rebuilt from those five source files.
+
+**Colours sampled from the artwork** (replacing the launch palette):
+
+| Token | Was | Now | Source |
+|---|---|---|---|
+| `--primary` | `152 69% 14%` (#0B3D26) | `154 89% 15%` (**#04472B**) | bulb/brain green |
+| `--accent` | `40 60% 47%` (#C09030) | `37 71% 47%` (**#CC8B22**) | filament/rays gold |
+| `--secondary` / `--muted` | `42 25% 96%` | `33 33% 94%` (**#F4EFE9**) | logo cream ground |
+| `--foreground` | `0 0% 13%` | `240 2% 14%` (**#242425**) | wordmark ink |
+| `--destructive` | crimson `355 80% 36%` | terracotta `14 55% 42%` | tongue icon (**crimson retired — not in the new mark**) |
+| new tokens | — | `--brand-cream`, `--brand-terracotta` (#BD7058), `--brand-sage` (#668165), `--brand-ink` | icon set |
+
+**Assets generated** (backgrounds flood-filled to transparency, content-trimmed, web-optimised):
+
+| File | Use |
+|---|---|
+| `fsrc-mark.png` / `-128.png` | mark with dark strokes — light backgrounds |
+| `fsrc-mark-light.png` / `-128.png` | mark with cream strokes — dark green backgrounds |
+| `fsrc-lockup.png` | full horizontal lockup, dark text |
+| `fsrc-lockup-light.png` / `-640.png` | full horizontal lockup, light text |
+| `favicon.svg`, `apple-touch-icon.png` | mark on a deep-green rounded plate (legible in light *and* dark tab bars) |
+| `opengraph.jpg` | 1200×630 green card, full light lockup, cream/gold/terracotta rule |
+
+**Code changes**: `index.css` (palette + brand tokens), `index.html` (theme-color `#04472B`),
+`Navbar.tsx` (mark now **swaps to the light variant** when the header turns solid green on
+scroll — the dark-stroke mark would otherwise vanish), `Footer.tsx` (brand block replaced by
+the full lockup image, so the wordmark and tagline now come from the artwork itself),
+`PageHero.tsx` + `Home.tsx` (grid-texture gold), `ReportCover.tsx` (cover green), `README.md`.
+
+**Verification** (headless Chromium against the production build):
+
+| Check | Status | Observed |
+|---|---|---|
+| `npm run build` | ✅ | 2,113 modules, 0 errors |
+| Navbar — top state | ✅ | dark-stroke mark on white, gold tagline, green wordmark |
+| Navbar — scrolled state | ✅ | light-stroke mark on solid `#04472B`, fully legible |
+| Footer | ✅ | full "FIVE SENSES / INSIGHT. INTELLIGENCE. IMPACT." lockup renders clean on green |
+| Mark transparency | ✅ | composited on white, cream and green test fields — no halo, no white box |
+| Mobile 390px | ✅ | mark + wordmark fit the 80px bar, hamburger unaffected |
+| Publications / ReportCover | ✅ | cover green matches new primary; cream section ground visible |
+| Page errors | ✅ | none |
+
+Old rosette assets (`fsrc-emblem.png`, `fsrc-emblem-96.png`, `fsrc-logo-full.png`) were moved
+out of the repo to `C:\dev\fsrc-website\_old-logo-assets\` — `deploy_fsrc.bat` will record the
+deletions automatically. Delete that folder yourself whenever you're happy.
+
+**To deploy**: double-click `deploy_fsrc.bat`. After the build, hard-refresh fsrc.pro
+(**Ctrl+F5**) — the old favicon and OG image are cached; ask LinkedIn/X to re-scrape by pasting
+the URL into https://www.opengraph.xyz.

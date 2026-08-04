@@ -87,12 +87,14 @@ export function Navbar() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group" aria-label="FSRC — return to homepage">
               <img
-                src={`${import.meta.env.BASE_URL}images/fsrc-emblem-96.png`}
+                src={`${import.meta.env.BASE_URL}images/${
+                  isSolidNavy ? "fsrc-mark-light-128.png" : "fsrc-mark-128.png"
+                }`}
                 alt=""
                 aria-hidden="true"
-                width={46}
-                height={44}
-                className="h-11 w-auto shrink-0"
+                width={102}
+                height={128}
+                className="h-14 w-auto shrink-0 transition-opacity duration-300"
               />
               <span className="font-serif text-2xl font-bold tracking-wider">
                 {SITE_META.name}

@@ -16,19 +16,13 @@ export function Footer() {
           <div className="md:col-span-4 lg:col-span-4">
             <div className="mb-6">
               <img
-                src={`${import.meta.env.BASE_URL}images/fsrc-emblem-96.png`}
-                alt="Five Senses Research Consultants emblem"
-                width={67}
-                height={64}
-                className="h-16 w-auto mb-4"
+                src={`${import.meta.env.BASE_URL}images/fsrc-lockup-light-640.png`}
+                alt={`${SITE_META.legalName} — ${SITE_META.tagline}`}
+                width={640}
+                height={275}
+                className="w-full max-w-[260px] h-auto mb-5"
               />
-              <div className="font-serif text-4xl font-bold text-white tracking-wide mb-3">
-                {SITE_META.name}
-              </div>
-              <div className="w-10 h-px bg-accent mb-3" aria-hidden="true" />
-              <p className="text-accent text-xs font-semibold uppercase tracking-[0.2em]">
-                {SITE_META.tagline}
-              </p>
+              <div className="w-10 h-px bg-accent" aria-hidden="true" />
             </div>
             <p className="text-white/55 text-sm leading-relaxed mb-8 max-w-xs">
               {SITE_META.description}

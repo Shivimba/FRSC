@@ -36,38 +36,41 @@
 
 :root {
   /*
-   * FSRC corporate identity — derived from the official logo:
-   * Forest Green #0B3D26 · Crimson Red #A6121F · Gold #C09030 · Ink Black #101010 · White #FFFFFF
+   * FSRC corporate identity — derived from the Five Senses lightbulb logo:
+   * Forest Green #04472B · Gold #CC8B22 · Cream #F4EFE9
+   * Terracotta #BD7058 · Sage #668165 · Ink #242425
    */
 
   --background: 0 0% 100%;
-  --foreground: 0 0% 13%;
+  --foreground: 240 2% 14%;
 
-  --primary: 152 69% 14%;
+  --primary: 154 89% 15%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 42 25% 96%;
-  --secondary-foreground: 152 69% 14%;
+  --secondary: 33 33% 94%;
+  --secondary-foreground: 154 89% 15%;
 
-  --muted: 42 25% 96%;
-  --muted-foreground: 0 0% 38%;
+  --muted: 33 33% 94%;
+  --muted-foreground: 30 5% 38%;
 
-  --accent: 40 60% 47%;
+  --accent: 37 71% 47%;
   --accent-foreground: 0 0% 100%;
 
-  --destructive: 355 80% 36%;
+  --destructive: 14 55% 42%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 40 15% 89%;
-  --input: 40 15% 89%;
-  --ring: 40 60% 47%;
+  --border: 33 20% 88%;
+  --input: 33 20% 88%;
+  --ring: 37 71% 47%;
 
   --card: 0 0% 100%;
-  --card-foreground: 0 0% 13%;
+  --card-foreground: 240 2% 14%;
 
   /* Supporting brand tokens from the logo */
-  --brand-red: 355 80% 36%;
-  --brand-black: 0 0% 6%;
+  --brand-cream: 33 33% 94%;
+  --brand-terracotta: 14 43% 54%;
+  --brand-sage: 118 12% 45%;
+  --brand-ink: 240 2% 14%;
 }
 
 @layer base {
