@@ -285,3 +285,52 @@ deletions automatically. Delete that folder yourself whenever you're happy.
 **To deploy**: double-click `deploy_fsrc.bat`. After the build, hard-refresh fsrc.pro
 (**Ctrl+F5**) — the old favicon and OG image are cached; ask LinkedIn/X to re-scrape by pasting
 the URL into https://www.opengraph.xyz.
+
+## Primary-logo addendum (August 4, 2026) — full lockup in the header and footer
+
+You supplied `new_FSRC_Logo_03.png` (bulb + gold rule + **"Five Senses Research Consultants"**
+set in a serif, cream on deep green) and asked for it to be used *in full* on the home page in
+place of the FSRC acronym, repeated in the footer, with enough room that the words stay legible.
+
+**Measurements that drove the layout.** The lockup is 2.03:1 with the name on four lines; each
+line is ~17% of the logo's height and the cap height ~11%. So a 96px-tall logo yields a cap
+height of ~10.8px — the same as 16px body text. That set the sizing: logo `h-20 lg:h-24`
+(80 / 96px) inside a header of `h-28 lg:h-32` (112 / 128px), up from the old 80px bar.
+
+| Change | Detail |
+|---|---|
+| Navbar | FSRC acronym, divider and tagline **removed**; replaced by the full lockup |
+| Header height | `h-20` → `h-28 lg:h-32`; `<main>` padding `pt-[80px] lg:pt-[112px]` → `pt-[112px] lg:pt-[160px]`; mobile drawer `top-20` → `top-28` |
+| Header colour | now **always solid green** (was white at top, green on scroll) |
+| Nav spacing | `space-x-8` → `space-x-6 xl:space-x-8` so the wider logo clears the links at 1024px |
+| Footer | brand block now the same lockup at `max-w-[300px]` |
+| Palette | `--primary` → **#093421** (`153 70% 12%`) and `--accent` → **#CF881E** (`36 75% 46%`), sampled from this master so every green surface matches the logo's own field |
+| Icons + OG | favicon, apple-touch icon and the 1200×630 card re-cut from this master |
+
+**Why the header is always green.** The lockup is cream-and-gold on transparent — the only
+colourway you supplied. On the old white top-of-page header it would have been invisible, and
+recolouring your artwork to invent a dark-on-light variant seemed worse than changing the bar.
+Solid green also means the header flows straight into the dark hero. **If you'd rather keep a
+white header**, say so and I'll produce a green-ink version of the lockup instead — it's a
+recolour of the same file, about ten minutes.
+
+**Verification** (headless Chromium, production build):
+
+| Check | Status | Observed |
+|---|---|---|
+| `npm run build` | ✅ | 2,113 modules, 0 errors |
+| Desktop 1440px | ✅ | all four words legible; logo clears the nav by a wide margin |
+| Desktop 1024px | ✅ | logo + six nav links fit on one row, no wrap or overlap |
+| Mobile 390px | ✅ | full lockup at 80px still legible beside the hamburger |
+| Mobile menu open | ✅ | drawer opens flush under the 112px bar — no gap, no overlap |
+| Scrolled state | ✅ | header keeps its shadow; no colour flip now that it is always green |
+| Inner page (Publications) | ✅ | PageHero sits correctly under the taller header |
+| Footer | ✅ | lockup at 300px — the name is the largest it has ever been |
+| Page errors | ✅ | none |
+
+Superseded assets (`fsrc-lockup*.png` — the older "FIVE SENSES / INSIGHT. INTELLIGENCE. IMPACT."
+lockup) moved to `C:\dev\fsrc-website\_old-logo-assets\`; the master PNG was copied into
+`newFive_Senses_Logo\` beside the others.
+
+**To deploy**: double-click `deploy_fsrc.bat`, then hard-refresh (**Ctrl+F5**) — favicon and OG
+image are cached.

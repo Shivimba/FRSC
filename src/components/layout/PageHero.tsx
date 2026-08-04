@@ -22,7 +22,7 @@ export function PageHero({ title, description, className }: PageHeroProps) {
       <div
         className="absolute inset-0 z-0 opacity-[0.025]"
         style={{
-          backgroundImage: `linear-gradient(to right, #CC8B22 1px, transparent 1px), linear-gradient(to bottom, #CC8B22 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(to right, #CF881E 1px, transparent 1px), linear-gradient(to bottom, #CF881E 1px, transparent 1px)`,
           backgroundSize: "80px 80px",
         }}
         aria-hidden="true"

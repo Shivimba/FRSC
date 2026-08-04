@@ -37,23 +37,23 @@
 :root {
   /*
    * FSRC corporate identity — derived from the Five Senses lightbulb logo:
-   * Forest Green #04472B · Gold #CC8B22 · Cream #F4EFE9
+   * Forest Green #093421 · Gold #CF881E · Cream #F4EFE9
    * Terracotta #BD7058 · Sage #668165 · Ink #242425
    */
 
   --background: 0 0% 100%;
   --foreground: 240 2% 14%;
 
-  --primary: 154 89% 15%;
+  --primary: 153 70% 12%;
   --primary-foreground: 0 0% 100%;
 
   --secondary: 33 33% 94%;
-  --secondary-foreground: 154 89% 15%;
+  --secondary-foreground: 153 70% 12%;
 
   --muted: 33 33% 94%;
   --muted-foreground: 30 5% 38%;
 
-  --accent: 37 71% 47%;
+  --accent: 36 75% 46%;
   --accent-foreground: 0 0% 100%;
 
   --destructive: 14 55% 42%;
@@ -61,7 +61,7 @@
 
   --border: 33 20% 88%;
   --input: 33 20% 88%;
-  --ring: 37 71% 47%;
+  --ring: 36 75% 46%;
 
   --card: 0 0% 100%;
   --card-foreground: 240 2% 14%;

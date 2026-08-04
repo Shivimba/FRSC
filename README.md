@@ -142,8 +142,8 @@ For the report cover component, any publication can be featured with:
 All brand colors are defined as CSS custom properties in **`src/index.css`** under `:root`:
 
 ```css
---primary: 154 89% 15%;      /* Forest Green #04472B (from logo) */
---accent: 37 71% 47%;        /* Gold #CC8B22 (from logo) */
+--primary: 153 70% 12%;      /* Forest Green #093421 — the logo's own field colour */
+--accent: 36 75% 46%;        /* Gold #CF881E (from logo) */
 --secondary: 33 33% 94%;     /* Cream #F4EFE9 (from logo) */
 --foreground: 240 2% 14%;    /* Ink #242425 */
 --destructive: 14 55% 42%;   /* Terracotta (deepened for contrast) */
@@ -173,19 +173,24 @@ Font assignments are in `src/index.css`:
 
 The official FSRC logo is integrated site-wide:
 
-- `public/images/fsrc-mark.png` — lightbulb/brain mark, dark strokes, for **light** backgrounds
-- `public/images/fsrc-mark-light.png` — same mark, cream strokes, for **dark green** backgrounds
-- `public/images/fsrc-mark-128.png` / `fsrc-mark-light-128.png` — navbar-sized (128px tall)
-- `public/images/fsrc-lockup.png` — full horizontal lockup (dark text) for light backgrounds
-- `public/images/fsrc-lockup-light.png` / `-640.png` — full lockup (light text) for dark backgrounds
+- `public/images/fsrc-logo-light.png` / `-640.png` — **the primary logo**: bulb + gold rule +
+  "Five Senses Research Consultants". Cream/gold on transparent, for **dark green** backgrounds.
+  Used in the navbar and the footer.
+- `public/images/fsrc-mark-light.png` / `-128.png` — bulb only, cut from the same master, for
+  dark backgrounds (favicon, apple-touch icon, any tight space)
+- `public/images/fsrc-mark.png` / `-128.png` — bulb only, dark strokes, for **light** backgrounds
 - `public/favicon.svg` + `public/apple-touch-icon.png` — icons generated from the emblem
 - `public/opengraph.jpg` — 1200×630 social sharing card built from the logo
 
-The navbar renders the mark beside the FSRC wordmark and **swaps to the light variant**
-when the header turns solid green on scroll (`src/components/layout/Navbar.tsx`). The footer
-uses the full horizontal lockup (`Footer.tsx`). Source files live in
-`C:\dev\fsrc-website\newFive_Senses_Logo\` — `05` (mark, light bg), `03` (mark, dark bg),
-`01` (lockup, light bg), `06` (lockup, dark bg).
+The **header is always solid `--primary` green** — the logo is a cream-on-transparent lockup,
+so a white bar would render it invisible. The bar is `h-28 lg:h-32` (112 / 128px) and the logo
+`h-20 lg:h-24` (80 / 96px), which is the smallest size that keeps all four words of the name as
+legible as body copy. If you change either, change the other **and** the matching
+`pt-[112px] lg:pt-[160px]` on `<main>` in `App.tsx` (desktop = 32px utility bar + 128px header)
+plus `top-28` on the mobile drawer in `Navbar.tsx`.
+
+Master artwork: `C:\dev\fsrc-website\newFive_Senses_Logo\new_FSRC_Logo_03.png` — every asset
+above (including the favicon and OG card) is cut from that one file.
 
 ### OG / Social sharing image
 

@@ -16,11 +16,11 @@ export function Footer() {
           <div className="md:col-span-4 lg:col-span-4">
             <div className="mb-6">
               <img
-                src={`${import.meta.env.BASE_URL}images/fsrc-lockup-light-640.png`}
-                alt={`${SITE_META.legalName} — ${SITE_META.tagline}`}
+                src={`${import.meta.env.BASE_URL}images/fsrc-logo-light-640.png`}
+                alt={SITE_META.legalName}
                 width={640}
-                height={275}
-                className="w-full max-w-[260px] h-auto mb-5"
+                height={316}
+                className="w-full max-w-[300px] h-auto mb-5"
               />
               <div className="w-10 h-px bg-accent" aria-hidden="true" />
             </div>

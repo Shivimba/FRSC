@@ -23,7 +23,7 @@ function Router() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <main id="main-content" className="flex-grow pt-[80px] lg:pt-[112px]">
+      <main id="main-content" className="flex-grow pt-[112px] lg:pt-[160px]">
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/about" component={About} />

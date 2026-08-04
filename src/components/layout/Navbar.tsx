@@ -24,7 +24,6 @@ export function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [mobileMenuOpen]);
 
-  const isSolidNavy = isScrolled || mobileMenuOpen;
 
   return (
     <>
@@ -74,42 +73,31 @@ export function Navbar() {
       {/* ── Main Header ───────────────────────────────────────────── */}
       <header
         className={cn(
-          "fixed left-0 right-0 z-50 transition-all duration-300 border-b",
-          "lg:top-8 top-0",
-          isSolidNavy
-            ? "bg-primary text-white border-primary/20 shadow-lg"
-            : "bg-white text-primary border-border/40"
+          "fixed left-0 right-0 z-50 transition-shadow duration-300 border-b",
+          "lg:top-8 top-0 bg-primary text-white border-white/10",
+          isScrolled && "shadow-lg"
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+          <div className="flex justify-between items-center h-28 lg:h-32">
 
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group" aria-label="FSRC — return to homepage">
+            {/* Logo — full lockup, sized so the wordmark stays legible */}
+            <Link
+              href="/"
+              className="flex items-center shrink-0 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+              aria-label={`${SITE_META.legalName} — return to homepage`}
+            >
               <img
-                src={`${import.meta.env.BASE_URL}images/${
-                  isSolidNavy ? "fsrc-mark-light-128.png" : "fsrc-mark-128.png"
-                }`}
-                alt=""
-                aria-hidden="true"
-                width={102}
-                height={128}
-                className="h-14 w-auto shrink-0 transition-opacity duration-300"
+                src={`${import.meta.env.BASE_URL}images/fsrc-logo-light-640.png`}
+                alt={SITE_META.legalName}
+                width={640}
+                height={316}
+                className="h-20 lg:h-24 w-auto"
               />
-              <span className="font-serif text-2xl font-bold tracking-wider">
-                {SITE_META.name}
-              </span>
-              <span
-                className={cn("hidden md:block w-px h-6 mx-3", isSolidNavy ? "bg-white/20" : "bg-primary/20")}
-                aria-hidden="true"
-              />
-              <span className="hidden md:block text-xs font-medium uppercase tracking-[0.15em] text-accent">
-                {SITE_META.tagline}
-              </span>
             </Link>
 
             {/* Desktop Nav */}
-            <nav aria-label="Primary navigation" className="hidden lg:flex items-center space-x-8">
+            <nav aria-label="Primary navigation" className="hidden lg:flex items-center space-x-6 xl:space-x-8">
               {NAV_LINKS.map((link) => {
                 const isActive = location === link.href;
                 return (
@@ -119,11 +107,7 @@ export function Navbar() {
                     aria-current={isActive ? "page" : undefined}
                     className={cn(
                       "text-sm font-medium transition-colors hover:text-accent relative py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-1 rounded",
-                      isActive
-                        ? "text-accent"
-                        : isSolidNavy
-                        ? "text-white/80"
-                        : "text-primary/80"
+                      isActive ? "text-accent" : "text-white/80 hover:text-white"
                     )}
                   >
                     {link.label}
@@ -162,9 +146,9 @@ export function Navbar() {
           aria-hidden={!mobileMenuOpen}
           className={cn(
             "lg:hidden fixed inset-x-0 bg-primary border-t border-white/10 transition-all duration-300 ease-in-out overflow-hidden shadow-xl",
-            "top-20",
+            "top-28",
             mobileMenuOpen
-              ? "max-h-[calc(100vh-5rem)] opacity-100 pointer-events-auto"
+              ? "max-h-[calc(100vh-7rem)] opacity-100 pointer-events-auto"
               : "max-h-0 opacity-0 pointer-events-none"
           )}
         >

@@ -83,7 +83,7 @@ export function ReportCover({
         sizeStyles.root,
         className
       )}
-      style={{ background: "#04472B" }}
+      style={{ background: "#093421" }}
     >
       {/* ── Decorative geometry ───────────────────────── */}
       {/* Large faint circle top-right */}
