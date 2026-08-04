@@ -334,3 +334,65 @@ lockup) moved to `C:\dev\fsrc-website\_old-logo-assets\`; the master PNG was cop
 
 **To deploy**: double-click `deploy_fsrc.bat`, then hard-refresh (**Ctrl+F5**) — favicon and OG
 image are cached.
+
+---
+
+## Header resize addendum (August 4, 2026) — compact horizontal lockup
+
+Your note: *"the pane's height is too great for a website. Please resize it, which also means
+resizing the logo. Bring back the three words: 'Insight. Intelligence. Impact'."* Both are done,
+and the deploy is waiting on you.
+
+**The header is now 80px on mobile and 96px on desktop**, down from 112 / 128px — a 29% cut on
+mobile and 25% on desktop. Counting the utility bar, the total dead space above your content
+went from 160px to 128px.
+
+**Why a new logo file was needed.** The height was not a styling choice I could simply dial
+down. The lockup in the header set the name on **four** lines, so its artwork is 2.03:1 — twice
+as tall as it is wide, relative to a header. Shrinking that image to fit an 80px bar would have
+dropped the cap height of "Research Consultants" to about 7px: present, but no longer readable
+at arm's length. So rather than shrink your logo into illegibility, I **recomposed** it: same
+bulb, same gold rule, same letterforms cut from `new_FSRC_Logo_03.png` — re-set onto **two**
+lines, "Five Senses" over "Research Consultants". That lockup is **4.15:1**, and at 48–56px tall
+its cap height is ~14px, i.e. still body-copy legible.
+
+Nothing was redrawn or re-typed. Every glyph is pixel-for-pixel from your master file; only the
+arrangement changed. The four-line stacked lockup is untouched and still used in the **footer**,
+where a tall block is exactly right.
+
+| Change | Detail |
+|---|---|
+| New asset | `public/images/fsrc-logo-h-light.png` (1200×289) + `-520.png` (520×125), 4.15:1 |
+| Header height | `h-28 lg:h-32` → **`h-20 lg:h-24`** (112/128px → 80/96px) |
+| Logo size | `h-20 lg:h-24` → **`h-12 lg:h-14`** (80/96px → 48/56px) |
+| Tagline | **restored** — "INSIGHT. INTELLIGENCE. IMPACT." in gold caps, letterspaced, behind a hairline divider to the right of the logo |
+| Tagline wording | `SITE_META.tagline` changed from `Insight · Intelligence · Impact` (middots) to **`Insight. Intelligence. Impact.`** — periods, matching your wording and the original artwork |
+| Interlocks | `<main>` padding `pt-[112px] lg:pt-[160px]` → **`pt-[80px] lg:pt-[128px]`**; mobile drawer `top-28` → **`top-20`**, `max-h-[calc(100vh-7rem)]` → **`5rem`** |
+| Footer | unchanged — still the four-line stacked lockup at 300px |
+
+**The tagline is hidden at exactly one breakpoint, on purpose.** At 1024px the seven nav items
+and the logo together leave no room for it, so the rule is `hidden md:flex lg:hidden xl:flex`:
+visible on tablets, hidden at 1024–1279px, back from 1280px up. Better than letting it collide
+with "Research Programs" or forcing the nav to wrap.
+
+**Verification** (headless Chromium, production build of `dist/`):
+
+| Check | Status | Observed |
+|---|---|---|
+| `npm run build` | ✅ | 2,113 modules, 0 errors, 9.8s |
+| Desktop 1440px | ✅ | logo + gold tagline + all 6 nav links on one 96px row, no crowding |
+| Desktop 1024px | ✅ | tagline correctly suppressed; logo + nav fit with clearance |
+| Mobile 390px | ✅ | two-line wordmark legible at 48px beside the hamburger; bar is 80px |
+| Mobile menu open | ✅ | drawer opens flush under the 80px bar — no gap, no overlap |
+| Tagline contrast | ✅ | gold #CD871D on green #093421 = **4.64:1**, passes WCAG AA for normal text |
+| Wordmark cap height | ✅ | ~14px at 56px logo height — equal to 16px body copy |
+| Page errors | ✅ | none |
+
+**Not done / worth knowing.** `public/images/` still carries ~2.2 MB of superseded artwork from
+the earlier identity rounds (`fsrc-emblem*`, `fsrc-lockup*`, `fsrc-logo-full`, `fsrc-mark*`,
+`home-hero`) that nothing references any more. It costs you nothing at runtime — unreferenced
+files are never downloaded by a visitor — so I left it alone rather than move more files around
+on your disk unasked. Say the word and I'll sweep it into `_old-logo-assets\`.
+
+**To deploy**: double-click `deploy_fsrc.bat`. No hard refresh needed this time — the logo is a
+new filename, and the favicon and OG card did not change.

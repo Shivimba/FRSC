@@ -19,7 +19,7 @@ export const SITE_META = {
   /** Legal entity name — used in footer and About page only */
   legalName: "Five Senses Research Consultants",
   /** Brand tagline shown in navbar and footer */
-  tagline: "Insight · Intelligence · Impact",
+  tagline: "Insight. Intelligence. Impact.",
   /** Default meta description for the homepage */
   description:
     "FSRC is an independent research, policy intelligence, and applied innovation organization producing rigorous analysis and practical tools on governance, human rights, artificial intelligence, African futures, and public-purpose digital systems.",

@@ -173,21 +173,32 @@ Font assignments are in `src/index.css`:
 
 The official FSRC logo is integrated site-wide:
 
-- `public/images/fsrc-logo-light.png` / `-640.png` — **the primary logo**: bulb + gold rule +
-  "Five Senses Research Consultants". Cream/gold on transparent, for **dark green** backgrounds.
-  Used in the navbar and the footer.
-- `public/images/fsrc-mark-light.png` / `-128.png` — bulb only, cut from the same master, for
-  dark backgrounds (favicon, apple-touch icon, any tight space)
-- `public/images/fsrc-mark.png` / `-128.png` — bulb only, dark strokes, for **light** backgrounds
-- `public/favicon.svg` + `public/apple-touch-icon.png` — icons generated from the emblem
+- `public/images/fsrc-logo-h-light.png` / `-520.png` — **the header logo**: the *compact
+  horizontal* lockup. Bulb + gold rule + the name set on **two** lines ("Five Senses" /
+  "Research Consultants"), aspect **4.15:1**. Cream/gold on transparent, for **dark green**
+  backgrounds. Used in the navbar.
+- `public/images/fsrc-logo-light.png` / `-640.png` — **the stacked lockup**, same elements with
+  the name on four lines, aspect **2.03:1**. Used in the footer, where a tall block fits.
+- `public/favicon.svg` + `public/apple-touch-icon.png` — icons generated from the bulb
 - `public/opengraph.jpg` — 1200×630 social sharing card built from the logo
 
 The **header is always solid `--primary` green** — the logo is a cream-on-transparent lockup,
-so a white bar would render it invisible. The bar is `h-28 lg:h-32` (112 / 128px) and the logo
-`h-20 lg:h-24` (80 / 96px), which is the smallest size that keeps all four words of the name as
-legible as body copy. If you change either, change the other **and** the matching
-`pt-[112px] lg:pt-[160px]` on `<main>` in `App.tsx` (desktop = 32px utility bar + 128px header)
-plus `top-28` on the mobile drawer in `Navbar.tsx`.
+so a white bar would render it invisible.
+
+**Header sizing is an interlock — four values must move together.** The bar is `h-20 lg:h-24`
+(80 / 96px) and the logo `h-12 lg:h-14` (48 / 56px), which is the smallest size that keeps the
+wordmark as legible as body copy. Change either and you must also change:
+
+1. `pt-[80px] lg:pt-[128px]` on `<main>` in `App.tsx` (desktop = 32px utility bar + 96px header)
+2. `top-20` on the mobile drawer in `Navbar.tsx`
+3. `max-h-[calc(100vh-5rem)]` on the same drawer
+
+The compact horizontal lockup exists *because* of this interlock: the stacked 2.03:1 artwork
+geometrically forces a ~128px bar to keep four lines of text legible. Do not put the stacked
+lockup back in the header.
+
+The tagline beside the logo (`SITE_META.tagline`) is deliberately hidden at the `lg` breakpoint
+only — `hidden md:flex lg:hidden xl:flex` — because at 1024px the seven-item nav needs the room.
 
 Master artwork: `C:\dev\fsrc-website\newFive_Senses_Logo\new_FSRC_Logo_03.png` — every asset
 above (including the favicon and OG card) is cut from that one file.

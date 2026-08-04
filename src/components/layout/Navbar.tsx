@@ -79,22 +79,37 @@ export function Navbar() {
         )}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-28 lg:h-32">
+          <div className="flex justify-between items-center h-20 lg:h-24">
 
-            {/* Logo — full lockup, sized so the wordmark stays legible */}
-            <Link
-              href="/"
-              className="flex items-center shrink-0 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
-              aria-label={`${SITE_META.legalName} — return to homepage`}
-            >
-              <img
-                src={`${import.meta.env.BASE_URL}images/fsrc-logo-light-640.png`}
-                alt={SITE_META.legalName}
-                width={640}
-                height={316}
-                className="h-20 lg:h-24 w-auto"
-              />
-            </Link>
+            {/*
+              Logo — the COMPACT HORIZONTAL lockup (fsrc-logo-h-*), 4.15:1, not the
+              stacked 2.03:1 master. The stacked lockup forces a ~128px bar to keep
+              the wordmark legible; the horizontal one fits an 80/96px bar.
+              Header height, this image height, App.tsx's main padding-top and the
+              mobile drawer offsets below are INTERLOCKED — change one, change all.
+            */}
+            <div className="flex items-center shrink-0 gap-4 xl:gap-5">
+              <Link
+                href="/"
+                className="flex items-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+                aria-label={`${SITE_META.legalName} — return to homepage`}
+              >
+                <img
+                  src={`${import.meta.env.BASE_URL}images/fsrc-logo-h-light-520.png`}
+                  alt={SITE_META.legalName}
+                  width={520}
+                  height={125}
+                  className="h-12 lg:h-14 w-auto"
+                />
+              </Link>
+              {/* Tagline — hidden at lg, where the 7-item nav needs the room */}
+              <span className="hidden md:flex lg:hidden xl:flex items-center gap-4">
+                <span className="w-px h-8 bg-white/20" aria-hidden="true" />
+                <span className="text-accent text-[11px] font-semibold uppercase tracking-[0.18em] leading-tight">
+                  {SITE_META.tagline}
+                </span>
+              </span>
+            </div>
 
             {/* Desktop Nav */}
             <nav aria-label="Primary navigation" className="hidden lg:flex items-center space-x-6 xl:space-x-8">
@@ -146,9 +161,9 @@ export function Navbar() {
           aria-hidden={!mobileMenuOpen}
           className={cn(
             "lg:hidden fixed inset-x-0 bg-primary border-t border-white/10 transition-all duration-300 ease-in-out overflow-hidden shadow-xl",
-            "top-28",
+            "top-20",
             mobileMenuOpen
-              ? "max-h-[calc(100vh-7rem)] opacity-100 pointer-events-auto"
+              ? "max-h-[calc(100vh-5rem)] opacity-100 pointer-events-auto"
               : "max-h-0 opacity-0 pointer-events-none"
           )}
         >
