@@ -20,7 +20,7 @@ export function Footer() {
                 alt={SITE_META.legalName}
                 width={640}
                 height={316}
-                className="w-full max-w-[300px] h-auto mb-5"
+                className="w-full max-w-[225px] h-auto mb-5"
               />
               <div className="w-10 h-px bg-accent" aria-hidden="true" />
             </div>

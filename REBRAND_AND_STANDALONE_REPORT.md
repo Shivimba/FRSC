@@ -507,3 +507,16 @@ it reads too small, the lever with no downside is bar height — going to `h-24 
 
 **To deploy**: double-click `deploy_fsrc.bat`. Hard-refresh (**Ctrl+F5**) this time — the asset
 filenames are unchanged, so your browser may serve the previous version from cache.
+
+---
+
+## Footer logo addendum (August 4, 2026)
+
+The footer brand lockup is reduced **25%**: `max-w-[300px]` → **`max-w-[225px]`** in
+`Footer.tsx`. Measured in the production build at 1440px, the rendered image is now
+**225 × 111px** (was 300 × 148px). Same asset (`fsrc-logo-light-640.png`, the master lockup),
+same aspect, same position; only the cap changed. Verified: the gold hairline rule under it, the
+description paragraph, the social buttons and the three link columns all hold their positions —
+nothing reflowed.
+
+**To deploy**: double-click `deploy_fsrc.bat`, then **Ctrl+F5**.
